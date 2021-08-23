@@ -36,7 +36,7 @@ contract SimpleCoin is Ownable, ERC20{
         msg.sender.transfer(address(this).balance);
     }
     
-    function() payable external {
+    function() external payable{
     
         uint256 tokens = msg.value.mul(tokenExchangeRate);
         mint(msg.sender, tokens);
