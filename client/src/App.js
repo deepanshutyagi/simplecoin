@@ -5,12 +5,13 @@ import Web3 from 'web3';
 import { simpleStorageAbi } from './abis';
 import './App.css';
 const web3 = new Web3(Web3.givenProvider);
-const contractAddr = '0x4B629EFB0b9Dd3F6354fA3926Eb53851B4F97D99';
+const contractAddr = '0xCd64e7e17a0E6375048B9a65adc143ABa76f422C';
 const SimpleContract = new web3.eth.Contract(simpleStorageAbi, contractAddr);
 
 function App() {
   const [number, setNumber] = useState(0);
   const [getNumber, setGetNumber] = useState('0x00');
+  
   const handleGet = async (e) => {
     e.preventDefault();
     const result = await SimpleContract.methods.get().call();
