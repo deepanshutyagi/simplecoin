@@ -1,4 +1,4 @@
-const Migrations = artifacts.require("Storage");
+const Migrations = artifacts.require("SimpleCoin");
 
 module.exports = function (deployer) {
   deployer.deploy(Migrations);

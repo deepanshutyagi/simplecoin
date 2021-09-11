@@ -5,27 +5,26 @@ import Web3 from 'web3';
 import { simpleStorageAbi } from './abis';
 import './App.css';
 const web3 = new Web3(Web3.givenProvider);
-const contractAddr = '0xCd64e7e17a0E6375048B9a65adc143ABa76f422C';
+const contractAddr = '0x1727C19D3559C3c1F536063E70239eedF03d5639';
 const SimpleContract = new web3.eth.Contract(simpleStorageAbi, contractAddr);
 
 function App() {
-  const [number, setNumber] = useState(0);
-  const [getNumber, setGetNumber] = useState('0x00');
+  const [number,Transfer] = useState("0x",0);
+  const [gettokenbalance, setGetNumber] = useState('0x00');
   
-  const handleGet = async (e) => {
+  const handleGetTokenBalance = async (e) => {
     e.preventDefault();
     const result = await SimpleContract.methods.get().call();
     setGetNumber(result);
     console.log(result);
   }
 
-  const handleSet = async (e) => {
+  const handleTransfer = async (e) => {
     e.preventDefault();    
     const accounts = await window.ethereum.enable();
     const account = accounts[0];
-    const gas = await SimpleContract.methods.set(number)
-                        .estimateGas();
-    const result = await SimpleContract.methods.set(number).send({
+    const gas = await SimpleContract.methods.transfer(string,number).estimateGas();
+    const result = await SimpleContract.methods.transfer(string,number).send({
       from: account,
       gas 
     })
@@ -35,24 +34,24 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <form onSubmit={handleSet}>
+        <form onSubmit={handleTransfer}>
           <label>
-            Set Number:
+            Transfer:
             <input 
               type="text"
               name="name"
-              value={number}
-              onChange={ e => setNumber(e.target.value) } />
+              value={string,number}
+              onChange={ e => Transfer(e.target.value) } />
           </label>
-          <input type="submit" value="Set Number" />
+          <input type="submit" value="Transfer Tokens" />
         </form>
         <br/>
         <button
-          onClick={handleGet}
+          onClick={handleGetTokenBalance}
           type="button" > 
-          Get Number 
+          Get Token Balance
         </button>
-        { getNumber }
+        { gettokenbalance}
       </header>
     </div>  
 );
